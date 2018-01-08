@@ -33,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         db = new DatabaseHandler(this);
+        byPassActivity();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -119,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("Item Added ID:",String.valueOf(db.getGroceriesCount()));
 
+    }
+
+    public void byPassActivity(){
+        if (db.getGroceriesCount()>0){
+            startActivity(new Intent(MainActivity.this,ListActivity.class));
+            finish();
+        }
     }
 
 }
